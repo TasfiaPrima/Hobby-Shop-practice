@@ -40,7 +40,8 @@ use App\Http\Controllers\ProductController;
                     </ul>
                 </li>
                 @else
-                <li><a href="/login">login</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/login">Register</a></li>
                 @endif
             </ul>
         </div><!-- /.navbar-collapse -->

@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Session;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +27,20 @@ Route::get('/logout', function () {
     return redirect('login');
 });
 
-/*Route::get("user",[UserController::class,'show']);*/
+// Route::get('/login/google', 'App\Http\Controllers\UserController@google');
+// Route::get('/login/google/redirect', 'App\Http\Controllers\UserController@googleRedirect');
+
+Route::get('/login/google', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/login/google/redirect', function () {
+    $user = Socialite::driver('google')->user();
+
+    // $user->token
+});
+
+Route::view('/register', 'register');
 Route::post("/login", [UserController::class, 'login']);
 Route::get("/", [ProductController::class, 'index']);
+Route::post("/register", [UserController::class, 'register']);
